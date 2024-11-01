@@ -23,4 +23,4 @@ require("lazy").setup({
 		name = "plenary",
 	}
 })
-
+ColorPencil()

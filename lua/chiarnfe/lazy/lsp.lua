@@ -49,6 +49,21 @@ return {
 						}
 					}
 				end,
+				["ts_ls"] = function()
+					local lspconfig = require("lspconfig")
+					lspconfig.ts_ls.setup {
+						init_options = {
+							plugins = {
+								{
+									name = "@vue/typescript-plugin",
+									languages = { "javascript", "typescript", "vue" },
+									location = "~/AppData/Roaming/npm/node_modules/@vue/typescript-plugin"
+								}
+							}
+						},
+						filetypes = { "typescript", "javascript", "vue", "javascriptreact", "typescriptreact" }
+					}
+				end
 			}
 		})
 		local cmp_select = { behavior = cmp.SelectBehavior.Select }
