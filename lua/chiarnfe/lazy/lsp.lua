@@ -50,6 +50,8 @@ return {
 					}
 				end,
 				["ts_ls"] = function()
+					local mason_registry = require("mason-registry")
+					local ts_plugin_path = mason_registry.get_package("vue-language-server"):get_install_path() .. "/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
 					local lspconfig = require("lspconfig")
 					lspconfig.ts_ls.setup {
 						init_options = {
@@ -57,12 +59,13 @@ return {
 								{
 									name = "@vue/typescript-plugin",
 									languages = { "javascript", "typescript", "vue" },
-									location = "~/AppData/Roaming/npm/node_modules/@vue/typescript-plugin"
+									location = ts_plugin_path,
 								}
 							}
 						},
 						filetypes = { "typescript", "javascript", "vue", "javascriptreact", "typescriptreact" }
 					}
+					lspconfig.volar.setup {}
 				end
 			}
 		})
