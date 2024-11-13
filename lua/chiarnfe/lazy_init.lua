@@ -13,7 +13,13 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	spec = "chiarnfe.lazy",
+	spec = {
+		--{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
+		--{ import = "lazyvim.plugins.extras.linting.eslint" },
+		--{ import = "lazyvim.plugins.extras.lang.json" },
+		--{ import = "lazyvim.plugins.extras.lang.typescript" },
+		{ import = "chiarnfe.lazy" },
+	},
 	change_detection = { notify = false },
 	rocks = {
 		enabled = false,
@@ -21,6 +27,6 @@ require("lazy").setup({
 	{
 		"nvim-lua/plenary.nvim",
 		name = "plenary",
-	}
+	},
 })
 ColorPencil()

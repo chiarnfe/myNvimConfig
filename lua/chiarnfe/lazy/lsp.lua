@@ -11,6 +11,7 @@ return {
 		"L3MON4D3/LuaSnip",
 		"saadparwaiz1/cmp_luasnip",
 		"j-hui/fidget.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim"
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -21,14 +22,32 @@ return {
 			vim.lsp.protocol.make_client_capabilities(),
 			cmp_lsp.default_capabilities()
 		)
+		local mason_tool_installer = require("mason-tool-installer")
 		require("fidget").setup({})
-		require("mason").setup()
+		require("mason").setup({
+			ui = {
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗"
+				}
+			}
+		})
 		require("mason-lspconfig").setup({
 			ensure_installed = {
 				"lua_ls",
 				"rust_analyzer",
 				"gopls",
+				"html",
+				"tailwindcss"
 			},
+			mason_tool_installer.setup({
+				ensure_installed = {
+					"prettier",
+					"stylua",
+					"eslint_d"
+				}
+			}),
 			handlers = {
 				function(server_name)
 					require("lspconfig")[server_name].setup {
